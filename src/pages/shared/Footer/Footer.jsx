@@ -1,6 +1,6 @@
 import React from 'react';
 import MealNestLogo from '../mealnest/MealNestLogo';
-import { FaEnvelope, FaFacebook, FaGithub, FaYoutube } from 'react-icons/fa';
+import { FaEnvelope, FaFacebook, FaGithub} from 'react-icons/fa';
 
 const Footer = () => {
     return (
@@ -8,12 +8,12 @@ const Footer = () => {
   <aside>
     
     <MealNestLogo></MealNestLogo>
-    <p className="font-bold">
+    <p className="font-bold text-gray-300">
     University Hostel Management
       <br />
       Streamlining student life with efficient meal & review management. Built with MERN Stack.
     </p>
-    <p>Copyright © {new Date().getFullYear()} - All right reserved</p>
+    <p className='text-gray-300'>Copyright © {new Date().getFullYear()} - All right reserved</p>
   </aside>
   <nav>
     <div className="grid grid-flow-col gap-4">

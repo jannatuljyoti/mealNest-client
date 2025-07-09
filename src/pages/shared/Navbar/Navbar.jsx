@@ -1,11 +1,17 @@
 import React from 'react';
 import { NavLink } from 'react-router';
 import MealNestLogo from '../mealnest/MealNestLogo';
+import { IoIosNotificationsOutline } from 'react-icons/io';
 
 const Navbar = () => {
     const navItems= <>
-      <li><NavLink to="/">Home</NavLink></li>
-      <li><NavLink to="/meals">Meals</NavLink></li>
+      <li><NavLink to="/" 
+      className={({isActive})=>
+      isActive? "text-[#ec644b] text-xl font-semibold": ""}>Home</NavLink></li>
+      <li><NavLink to="/meals" className={({isActive})=>
+      isActive? "text-[#ec644b] text-xl font-semibold": ""}>Meals</NavLink></li>
+      <li><NavLink to="/upcoming-meals" className={({isActive})=>
+      isActive? "text-[#ec644b] text-xl font-semibold": ""}>Upcoming Meals</NavLink></li>
         
     </>
     return (
@@ -30,8 +36,9 @@ const Navbar = () => {
      {navItems}
     </ul>
   </div>
-  <div className="navbar-end">
-    <a className="btn">Button</a>
+  <div className="navbar-end gap-2">
+      <p><IoIosNotificationsOutline className='w-8 h-8 text-[#ec644b]'/></p>
+    <a className="btn bg-[#ec644b] text-xl text-white">Join Us</a>
   </div>
 </div>
     );
