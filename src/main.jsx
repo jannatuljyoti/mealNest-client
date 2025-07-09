@@ -6,6 +6,8 @@ import { router } from './router/Router.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-   <RouterProvider router={router} />
+  <div className='font-roboto max-w-7xl mx-auto'>
+     <RouterProvider router={router} />
+  </div>
   </StrictMode>,
 )

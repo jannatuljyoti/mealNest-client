@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router';
+import MealNestLogo from '../mealnest/MealNestLogo';
 
 const Navbar = () => {
     const navItems= <>
@@ -20,7 +21,9 @@ const Navbar = () => {
        {navItems}
       </ul>
     </div>
-    <a className="btn btn-ghost text-xl">daisyUI</a>
+    <a className="btn btn-ghost text-xl">
+      <MealNestLogo></MealNestLogo>
+    </a>
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1">
