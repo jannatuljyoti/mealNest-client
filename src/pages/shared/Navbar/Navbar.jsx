@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router';
+import { Link, NavLink } from 'react-router';
 import MealNestLogo from '../mealnest/MealNestLogo';
 import { IoIosNotificationsOutline } from 'react-icons/io';
 
@@ -38,7 +38,7 @@ const Navbar = () => {
   </div>
   <div className="navbar-end gap-2">
       <p><IoIosNotificationsOutline className='w-8 h-8 text-[#ec644b]'/></p>
-    <a className="btn bg-[#ec644b] text-xl text-white">Join Us</a>
+    <Link to="/login" className="btn bg-[#ec644b] text-xl text-white">Join Us</Link>
   </div>
 </div>
     );
