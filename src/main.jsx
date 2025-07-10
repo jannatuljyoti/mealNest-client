@@ -9,7 +9,7 @@ import AuthProvider from './context/AuthContext/AuthProvider.jsx';
 const queryClient = new QueryClient();
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-  <div className='font-roboto max-w-7xl mx-auto '>
+  <div className='font-roboto  mx-auto '>
    <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <RouterProvider router={router} />

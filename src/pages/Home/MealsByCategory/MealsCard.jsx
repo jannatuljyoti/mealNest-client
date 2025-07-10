@@ -5,7 +5,7 @@ const MealsCard = ({meal}) => {
     const {_id, title, image, rating, price}= meal;
 
     return (
-        <div className='card w-80 bg-base-100 shadow-md'>
+        <div className='card w-80 bg-base-100 shadow-md '>
             <figure>
                 <img src={image} alt={title} className='h-48 w-full object-cover'/>
             </figure>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import useAuth from '../../hooks/useAuth';
-import { useNavigate } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 import { FcGoogle } from 'react-icons/fc';
@@ -44,7 +44,7 @@ const Login = () => {
 
 
     return (
-        <div className='bg-base-200 p-6 rounded-lg shadow '>
+        <div className='bg-base-100 p-6 rounded-lg  shadow-md '>
             <h2 className='text-2xl font-semibold text-center mb-4'>Login Your Account</h2>
             <form onSubmit={handleSubmit(onSubmit)} className='space-y-3'>
                  <label className="label font-bold text-xl">Email:</label>
@@ -69,10 +69,12 @@ const Login = () => {
 
            <button type='submit' className='btn bg-[#ec644b]  w-full text-white'>Login</button>
 
+
             </form>
 
             <div className='divider'>OR</div>
             <button onClick={handleGoogle} className='btn  text-white bg-[#0c6c7c] w-full'>Continue with <FcGoogle className='w-5 h-5'/>Google</button>
+            <p className='font-semibold text-center mt-4'>Don't Have An Account? <Link to="/register" className='text-[#ec644b]'>Register</Link></p>
         </div>
     );
 };
