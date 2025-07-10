@@ -34,7 +34,8 @@ const Login = () => {
                 role: 'user',
             };
 
-            await axios.post('/api/users', saveUser);
+            await axios.post(`${import.meta.env.VITE_API_URL}/api/users`, saveUser);
+
             Swal.fire('Google Login Successful', '', 'success');
             navigate('/');
         }catch(err){

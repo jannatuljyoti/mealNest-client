@@ -1,15 +1,27 @@
 import React from 'react';
-import { Link, NavLink } from 'react-router';
+import { Link, NavLink, useNavigate } from 'react-router';
 import MealNestLogo from '../mealnest/MealNestLogo';
 import { IoIosNotificationsOutline } from 'react-icons/io';
+import useAuth from '../../../hooks/useAuth';
 
 const Navbar = () => {
+  const {user, logOut} = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogOut= async()=>{
+    await logOut();
+    navigate('/');
+
+  }
+
     const navItems= <>
       <li><NavLink to="/" 
       className={({isActive})=>
       isActive? "text-[#ec644b] text-xl font-semibold": ""}>Home</NavLink></li>
+
       <li><NavLink to="/meals" className={({isActive})=>
       isActive? "text-[#ec644b] text-xl font-semibold": ""}>Meals</NavLink></li>
+
       <li><NavLink to="/upcoming-meals" className={({isActive})=>
       isActive? "text-[#ec644b] text-xl font-semibold": ""}>Upcoming Meals</NavLink></li>
         
@@ -27,18 +39,43 @@ const Navbar = () => {
        {navItems}
       </ul>
     </div>
-    <a className="btn btn-ghost text-xl">
+    <Link to="/" className="btn btn-ghost text-xl">
       <MealNestLogo></MealNestLogo>
-    </a>
+    </Link>
+
+
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1">
      {navItems}
     </ul>
   </div>
+
+
   <div className="navbar-end gap-2">
       <p><IoIosNotificationsOutline className='w-8 h-8 text-[#ec644b]'/></p>
-    <Link to="/login" className="btn bg-[#ec644b] text-xl text-white">Join Us</Link>
+
+
+      {user?(
+        <div className='dropdown dropdown-end'>
+          <div tabIndex={0} className='avatar online cursor-pointer'>
+            <div className='w-10 rounded-full'>
+                  <img src={user?.photoURL || '/user.png'} alt="Profile" />
+            </div>
+          </div>
+
+          <ul
+          tabIndex={0}
+          className='menu menu-sm dropdown-content mt-3 z-10 p-2 shadow bg-base-100 rounded-box w-52'>
+
+            <li><span className='text-lg font-bold'>{user.displayName || 'user'}</span></li>
+            <li><Link to="/dashboard">Dashboard</Link></li>
+            <li><button onClick={handleLogOut}>Logout</button></li>
+          </ul>
+        </div>
+      ):(<Link to="/login" className="btn bg-[#ec644b] text-xl text-white">Join Us</Link>)}
+
+    
   </div>
 </div>
     );

@@ -25,7 +25,8 @@ const Register = () => {
                 role: 'user',
             };
 
-            await axios.post('/api/users',saveUser);
+            await axios.post(`${import.meta.env.VITE_API_URL}/api/users`, saveUser);
+
             Swal.fire('Register Successful', '', 'success');
             reset();
             navigate('/');
@@ -47,7 +48,8 @@ const Register = () => {
                 role: 'user',
             };
 
-            await axios.post('/api/users', saveUser);
+           await axios.post(`${import.meta.env.VITE_API_URL}/api/users`, saveUser);
+
             Swal.fire('Google Sign In Successful', '', 'success');
             navigate('/');
         }catch(err){

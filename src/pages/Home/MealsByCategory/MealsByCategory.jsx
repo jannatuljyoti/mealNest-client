@@ -7,15 +7,15 @@ const MealsByCategory = () => {
     const [select, setSelect]=useState("All");
 
     const {data: meals = [], isLoading} = useQuery({
-        queryKey: ["meals", select],
-        queryFn: async()=>{
-            const res = await axios.get(
-                select === "All"
-                ? "/api/meals"
-                :`/api/meals?category=${select}`
-            );
-            return res.data.data;
-        },
+        queryFn: async () => {
+  const res = await axios.get(
+    select === "All"
+      ? `${import.meta.env.VITE_API_URL}/api/meals`
+      : `${import.meta.env.VITE_API_URL}/api/meals?category=${select}`
+  );
+  return res.data;
+},
+
     });
 
     const categories = ["All", "Breakfast", "Lunch", "Dinner"];
