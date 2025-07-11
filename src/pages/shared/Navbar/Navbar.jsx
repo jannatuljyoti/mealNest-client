@@ -8,7 +8,8 @@ import useAdmin from '../../../hooks/useAdmin'
 const Navbar = () => {
   const {user, logOut} = useAuth();
   const navigate = useNavigate();
-   const [isAdmin] = useAdmin();
+  const [isAdmin, isAdminLoading] = useAdmin();
+
 
   const handleLogOut= async()=>{
     await logOut();
@@ -87,14 +88,20 @@ const Navbar = () => {
                 </span>
               </li>
               <li>
-                {/* ✅ Conditional Dashboard Path */}
-                <Link
-                  to={isAdmin ? '/dashboard/profile' : '/user-dashboard'}
-                  className="text-sm font-bold text-[#ec644b]"
-                >
-                  Dashboard
-                </Link>
-              </li>
+  {
+    isAdminLoading ? (
+      <span className="text-sm text-gray-500">Checking Role...</span>
+    ) : (
+      <Link
+        to={isAdmin ? '/dashboard/profile' : '/user-dashboard'}
+        className="text-sm font-bold text-[#ec644b]"
+      >
+        Dashboard
+      </Link>
+    )
+  }
+</li>
+
               <li>
                 <button
                   onClick={handleLogOut}
