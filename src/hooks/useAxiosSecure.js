@@ -1,27 +1,49 @@
 
-import axios from "axios";
-import { useEffect } from "react";
-import { useNavigate } from "react-router";
+import axios from 'axios';
+import useAuth from './useAuth';
+import { useEffect } from 'react';
 
 const axiosSecure = axios.create({
-  baseURL: import.meta.env.VITE_API_URL,
-  withCredentials: true,
+  baseURL:import.meta.env.VITE_API_URL,
 });
 
 const useAxiosSecure = () => {
-  const navigate = useNavigate();
+  const { user } = useAuth();
 
   useEffect(() => {
-    axiosSecure.interceptors.response.use(
-      (response) => response,
-      (error) => {
-        if (error.response && (error.response.status === 401 || error.response.status === 403)) {
-          navigate('/login');
+    // ✅ Add token to headers
+    const requestInterceptor = axiosSecure.interceptors.request.use(
+      async (config) => {
+        const token = await user?.getIdToken?.();
+        if (token) {
+          config.headers.Authorization = `Bearer ${token}`;
         }
-        return Promise.reject(error);
+        return config;
+      },
+      (error) => Promise.reject(error)
+    );
+
+    // ✅ Properly eject request interceptor on cleanup
+    return () => {
+      axiosSecure.interceptors.request.eject(requestInterceptor);
+    };
+  }, [user]);
+
+  useEffect(() => {
+    // ✅ Add response interceptor safely
+    const responseInterceptor = axiosSecure.interceptors.response.use(
+      (res) => res,
+      (error) => {
+        console.log('inside response interceptor:', error);
+        return Promise.reject(error); // ✅ Important for error handling
       }
     );
-  }, [navigate]);
+
+    // ✅ Eject response interceptor on cleanup
+    return () => {
+      axiosSecure.interceptors.response.eject(responseInterceptor);
+    };
+  }, []);
 
   return axiosSecure;
 };
