@@ -1,4 +1,5 @@
 import React from 'react';
+import MealNestLogo from '../shared/mealnest/MealNestLogo'
 import { NavLink, Outlet } from 'react-router';
 import {
   IoPersonOutline,
@@ -13,15 +14,18 @@ import {
 
 const AdminDashboard = () => {
   return (
-    <div className="flex min-h-screen">
+     <div className="flex min-h-screen"> 
       {/* Sidebar */}
-      <aside className="w-64 bg-gray-800 text-white p-5">
-        <h2 className="text-xl font-bold mb-6">Admin Panel</h2>
+      <aside className="w-64 bg-gray-800 text-white p-5 flex flex-col">
+        <MealNestLogo />
+        <h2 className="text-xl font-bold mb-6 mt-4">Admin Panel</h2>
         <nav className="flex flex-col gap-3">
           <NavLink
             to="/dashboard/profile"
             className={({ isActive }) =>
-              isActive ? 'text-orange-400 font-semibold flex items-center gap-2' : 'flex items-center gap-2'
+              isActive
+                ? 'text-orange-400 font-semibold flex items-center gap-2'
+                : 'flex items-center gap-2'
             }
           >
             <IoPersonOutline size={20} />
@@ -31,7 +35,9 @@ const AdminDashboard = () => {
           <NavLink
             to="/dashboard/manage-users"
             className={({ isActive }) =>
-              isActive ? 'text-orange-400 font-semibold flex items-center gap-2' : 'flex items-center gap-2'
+              isActive
+                ? 'text-orange-400 font-semibold flex items-center gap-2'
+                : 'flex items-center gap-2'
             }
           >
             <IoPeopleOutline size={20} />
@@ -41,7 +47,9 @@ const AdminDashboard = () => {
           <NavLink
             to="/dashboard/add-meal"
             className={({ isActive }) =>
-              isActive ? 'text-orange-400 font-semibold flex items-center gap-2' : 'flex items-center gap-2'
+              isActive
+                ? 'text-orange-400 font-semibold flex items-center gap-2'
+                : 'flex items-center gap-2'
             }
           >
             <IoAddCircleOutline size={20} />
@@ -51,7 +59,9 @@ const AdminDashboard = () => {
           <NavLink
             to="/dashboard/all-meals"
             className={({ isActive }) =>
-              isActive ? 'text-orange-400 font-semibold flex items-center gap-2' : 'flex items-center gap-2'
+              isActive
+                ? 'text-orange-400 font-semibold flex items-center gap-2'
+                : 'flex items-center gap-2'
             }
           >
             <IoListOutline size={20} />
@@ -61,7 +71,9 @@ const AdminDashboard = () => {
           <NavLink
             to="/dashboard/all-reviews"
             className={({ isActive }) =>
-              isActive ? 'text-orange-400 font-semibold flex items-center gap-2' : 'flex items-center gap-2'
+              isActive
+                ? 'text-orange-400 font-semibold flex items-center gap-2'
+                : 'flex items-center gap-2'
             }
           >
             <IoChatbubblesOutline size={20} />
@@ -71,7 +83,9 @@ const AdminDashboard = () => {
           <NavLink
             to="/dashboard/serve-meals"
             className={({ isActive }) =>
-              isActive ? 'text-orange-400 font-semibold flex items-center gap-2' : 'flex items-center gap-2'
+              isActive
+                ? 'text-orange-400 font-semibold flex items-center gap-2'
+                : 'flex items-center gap-2'
             }
           >
             <IoRestaurantOutline size={20} />
@@ -81,7 +95,9 @@ const AdminDashboard = () => {
           <NavLink
             to="/dashboard/upcoming-meals"
             className={({ isActive }) =>
-              isActive ? 'text-orange-400 font-semibold flex items-center gap-2' : 'flex items-center gap-2'
+              isActive
+                ? 'text-orange-400 font-semibold flex items-center gap-2'
+                : 'flex items-center gap-2'
             }
           >
             <IoTimerOutline size={20} />
