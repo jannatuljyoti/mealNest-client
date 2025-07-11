@@ -6,6 +6,8 @@ import Home from "../pages/Home/Home/Home";
 import JoinUs from "../layouts/JoinUs";
 import Login from "../pages/JoinUs/Login";
 import Register from "../pages/JoinUs/Register";
+import Meals from "../pages/Home/Meals/Meals";
+import UpcomingMeal from "../pages/Home/Upcoming/UpcomingMeal";
 
 import AdminDashboard from "../pages/Admin/AdminDashboard";
 import AdminProfile from "../pages/Admin/AdminProfile";
@@ -25,6 +27,7 @@ import PrivateRoute from "../routes/PrivateRoute";
 
 
 
+
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -33,6 +36,14 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <Home />
+      },
+      {
+        path:"meals",
+        element: Meals
+      },
+      {
+        path: "upcoming-meal",
+        element:UpcomingMeal
       },
     ],
   },

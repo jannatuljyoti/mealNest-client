@@ -23,8 +23,8 @@ const MealsByCategory = () => {
 
 
     return (
-        <div className='my-10 px-4'>
-            <h2 className='text-2xl font-bold text-center mb-7'
+        <div className='my-10 p-7 bg-emerald-50'>
+            <h2 className='text-2xl font-bold text-[#ec644b] text-center mb-7'
             >Meals by Category</h2>
 
             {/* tabs */}

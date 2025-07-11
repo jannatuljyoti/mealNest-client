@@ -20,13 +20,13 @@ const Navbar = () => {
     const navItems= <>
       <li><NavLink to="/" 
       className={({isActive})=>
-      isActive? "text-[#ec644b] text-xl font-semibold": ""}>Home</NavLink></li>
+      isActive? "text-[#ec644b] font-semibold": ""}>Home</NavLink></li>
 
       <li><NavLink to="/meals" className={({isActive})=>
-      isActive? "text-[#ec644b] text-xl font-semibold": ""}>Meals</NavLink></li>
+      isActive? "text-[#ec644b]  font-semibold": ""}>Meals</NavLink></li>
 
-      <li><NavLink to="/upcoming-meals" className={({isActive})=>
-      isActive? "text-[#ec644b] text-xl font-semibold": ""}>Upcoming Meals</NavLink></li>
+      <li><NavLink to="/upcoming-meal" className={({isActive})=>
+      isActive? "text-[#ec644b]  font-semibold": ""}>Upcoming Meals</NavLink></li>
         
     </>
     return (
