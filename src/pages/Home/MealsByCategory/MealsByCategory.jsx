@@ -6,7 +6,7 @@ import MealsCard from './MealsCard';
 const MealsByCategory = () => {
     const [select, setSelect]=useState("All");
 
-    const { data: meals = [], isLoading } = useQuery({
+    const { data, isLoading } = useQuery({
   queryKey: ['meals', select],
   queryFn: async () => {
     const res = await axios.get(
@@ -18,9 +18,11 @@ const MealsByCategory = () => {
   },
 });
 
+const meals =data?.meals || [];
 
     const categories = ["All", "Breakfast", "Lunch", "Dinner"];
 
+    
 
     return (
         <div className='my-10 p-7 bg-emerald-50'>

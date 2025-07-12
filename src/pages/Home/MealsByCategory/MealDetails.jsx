@@ -3,6 +3,8 @@ import { useParams } from 'react-router';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import useAuth from '../../../hooks/useAuth';
 import Swal from 'sweetalert2';
+import Navbar from '../../shared/Navbar/Navbar';
+import Footer from '../../shared/Footer/Footer';
 
 const MealDetails = () => {
     const {id} = useParams();
@@ -75,7 +77,10 @@ const MealDetails = () => {
 
 
     return (
-        <div className='max-w-4xl mx-auto my-10 p-5 rounded-md bg-sky-100 shadow'>
+       <section className='bg-sky-50'>
+        <Navbar></Navbar>
+
+         <div className='max-w-4xl mx-auto my-10 p-5 rounded-md bg-white shadow-md'>
 
             <div className='items-center justify-center'>
              <h2 className='text-3xl font-bold text-gray-600 p-4'>Meal Details</h2>
@@ -127,6 +132,9 @@ const MealDetails = () => {
             )}
             
         </div>
+
+        <Footer></Footer>
+       </section>
     );
 };
 

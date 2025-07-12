@@ -113,7 +113,7 @@ const Navbar = () => {
             </ul>
           </div>
         ) : (
-          <Link to="/login" className="btn bg-[#ec644b] text-xl text-white">
+          <Link to="/join-us" className="btn bg-[#ec644b] text-xl text-white">
             Join Us
           </Link>
         )}

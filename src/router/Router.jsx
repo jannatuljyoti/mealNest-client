@@ -6,7 +6,7 @@ import Home from "../pages/Home/Home/Home";
 import JoinUs from "../layouts/JoinUs";
 import Login from "../pages/JoinUs/Login";
 import Register from "../pages/JoinUs/Register";
-import Meals from "../pages/Home/Meals/Meals";
+import Meals from "../pages/Home/Meals/Meals"
 import UpcomingMeal from "../pages/Home/Upcoming/UpcomingMeal";
 
 import AdminDashboard from "../pages/Admin/AdminDashboard";
@@ -41,11 +41,11 @@ export const router = createBrowserRouter([
       },
       {
         path:"meals",
-        element: Meals
+        element: <Meals></Meals>
       },
       {
         path: "upcoming-meal",
-        element:UpcomingMeal
+        element:<UpcomingMeal></UpcomingMeal>
       },
     ],
     
@@ -59,18 +59,18 @@ export const router = createBrowserRouter([
     element:<MealDetails></MealDetails>
   },
   {
-    path: "/",
+    path: "/join-us",
     element: <JoinUs />,
-    children: [
-      {
-        path: "login",
-        element: <Login />
-      },
-      {
-        path: "register",
-        element: <Register />
-      },
-    ],
+    // children: [
+    //   {
+    //     path: "login",
+    //     element: <Login />
+    //   },
+    //   {
+    //     path: "register",
+    //     element: <Register />
+    //   },
+    // ],
   },
 
   // ✅ User Dashboard

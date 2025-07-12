@@ -1,20 +1,18 @@
-import React from 'react';
-import { Outlet } from 'react-router';
+import React, { useState } from 'react';
+
 import MealNestLogo from '../pages/shared/mealnest/MealNestLogo';
 import lottieFlies from '../assets/Login and Sign up.json'
 import Lottie from 'lottie-react';
+import Login from '../pages/JoinUs/Login';
+import Register from '../pages/JoinUs/Register';
 
 const JoinUs = () => {
-    return (
-        // <div className='p-16 bg-[#f4f8ff] min-h-screen'>
-        //     <div className='mb-'>
-        //         <MealNestLogo></MealNestLogo>
-        //         </div>
-        //     <Outlet></Outlet>
-        // </div>
+  const [isLogin, setIsLogin]=useState(true);
 
-        <div className="p-16 bg-[#f4f8ff] min-h-screen flex flex-col">
-            <div className='mb-8 '>
+    return (
+        
+        <div className="p-9 bg-[#f4f8ff] min-h-screen flex flex-col">
+            <div className='mb-7 '>
               <MealNestLogo></MealNestLogo>
             </div>
 
@@ -25,9 +23,23 @@ const JoinUs = () => {
                   <Lottie animationData={lottieFlies} loop={true}/>
                </div>
 
-
+                {/* form section */}
                <div className='flex-1 max-w-xl w-full'>
-                 <Outlet></Outlet>
+                 {/* tabs */}
+                 <div className='tabs tabs-boxed mb-5 flex justify-center'>
+                  <button className={`tab ${isLogin ? 'tab-active' : ''}`}
+                  onClick={()=>setIsLogin(true)}>
+                    Login
+                  </button>
+
+                  <button className={`tab ${isLogin ? 'tab-active' : ''}`}
+                  onClick={()=>setIsLogin(false)}>
+                    Register
+                  </button>
+                 </div>
+
+                 {/* conditional rendering */}
+                 {isLogin ? <Login/> : <Register/>}
                 </div>
 
              </div>

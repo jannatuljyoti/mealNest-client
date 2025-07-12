@@ -9,4 +9,18 @@
   font-style: normal;
   
 }
+/* 
+body{
+ 
+  min-height: 100vh;
+  overflow-y:auto ;
+} */
+
+/* body {
+  overflow: hidden;
+  min-height: 100vh;
+overflow-y: auto;
+
+} */
+  
 
