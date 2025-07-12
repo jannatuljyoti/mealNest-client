@@ -4,11 +4,11 @@ import { FaLeaf, FaQuestionCircle, FaUtensils } from 'react-icons/fa';
 const FaqNutrition = () => {
     return (
        <section className='bg-base-100 py-10 px-4'>
-        <div className='max-w-6xl mx-auto'>
-            <h2 className='text-3xl font-bold text-center mb-7'>FAQs & Nutrition Tips</h2>
+        <div className=' mx-auto'>
+            <h2 className='text-3xl text-gray-600 font-bold text-center mb-7 pb-5'>FAQs & Nutrition Tips</h2>
 
             {/* Grid */}
-            <div className='grid md:grid-cols-2 gap-9'>
+            <div className='grid md:grid-cols-2 gap-9 px-10'>
 
                 {/* FAQ Section */}
                 <div>
@@ -42,15 +42,15 @@ const FaqNutrition = () => {
 
                     <ul className='list-disc list-inside text-gray-700 space-y-2'>
 
-                        <li><FaUtensils className='inline mr-2 text-green-600'></FaUtensils>Drink at least 2 liters of water daily</li>
+                        <li className='text-lg'><FaUtensils className='inline mr-2 text-green-600'></FaUtensils>Drink at least 2 liters of water daily</li>
 
-                        <li><FaUtensils className='inline mr-2 text-green-600'></FaUtensils>Never skip breakfast—it powers your brain</li>
+                        <li className='text-lg'><FaUtensils className='inline mr-2 text-green-600'></FaUtensils>Never skip breakfast—it powers your brain</li>
 
-                        <li><FaUtensils className='inline mr-2 text-green-600'></FaUtensils>Add fruits to your daily intake</li>
+                        <li className='text-lg'><FaUtensils className='inline mr-2 text-green-600'></FaUtensils>Add fruits to your daily intake</li>
 
-                        <li><FaUtensils className='inline mr-2 text-green-600'></FaUtensils>Avoid too much sugar and fast food</li>
+                        <li className='text-lg'><FaUtensils className='inline mr-2 text-green-600'></FaUtensils>Avoid too much sugar and fast food</li>
 
-                        <li><FaUtensils className='inline mr-2 text-green-600'></FaUtensils>Try to eat greens and proteins in every meal</li>
+                        <li className='text-lg'><FaUtensils className='inline mr-2 text-green-600'></FaUtensils>Try to eat greens and proteins in every meal</li>
 
                     </ul>
                 </div>
