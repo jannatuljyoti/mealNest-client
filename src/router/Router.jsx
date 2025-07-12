@@ -24,6 +24,8 @@ import RequestMeals from "../pages/UserAdmin/RequestMeals";
 import MyReviews from "../pages/UserAdmin/MyReviews";
 import PaymentHistory from "../pages/UserAdmin/PaymentHistory";
 import PrivateRoute from "../routes/PrivateRoute";
+import CheckOut from "../pages/CheckOut/CheckOut";
+import MealDetails from "../pages/Home/MealsByCategory/MealDetails";
 
 
 
@@ -46,6 +48,15 @@ export const router = createBrowserRouter([
         element:UpcomingMeal
       },
     ],
+    
+  },
+  {
+    path:"/checkout/:packageName",
+    element:<PrivateRoute><CheckOut></CheckOut></PrivateRoute>
+  },
+  {
+    path:"/meal/:id",
+    element:<MealDetails></MealDetails>
   },
   {
     path: "/",
