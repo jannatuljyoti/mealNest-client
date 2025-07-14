@@ -55,11 +55,11 @@ const UpcomingMeals = () => {
     return (
         <div className='p-7'>
             <div className='flex justify-between items-center mb-5'>
-                <h2>Upcoming Meals</h2>
+                <h2 className='text-2xl font-bold text-gray-600'>Upcoming Meals</h2>
 
                 <button
                 onClick={()=> setIsModalOpen(true)}
-                className='bg-green-600 text-white px-5 py-3 rounded hover:bg-blue-600'>
+                className='bg-[#0c6c7c] text-white px-5 py-3 rounded hover:bg-blue-600'>
                     Add Upcoming Meal
                 </button>
 
@@ -86,7 +86,7 @@ const UpcomingMeals = () => {
                             <td>{new Date(meal.postTime).toLocaleString()}</td>
                             <td>
                                 <button onClick={()=> handlePublish(meal._id)}
-                                    className='bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600'>
+                                    className='bg-[#ec644b] text-white px-4 py-2 rounded hover:bg-amber-500'>
                                     Publish
                                 </button>
                             </td>
@@ -110,7 +110,7 @@ const UpcomingMeals = () => {
         isOpen={isModalOpen}
         onRequestClose={()=> setIsModalOpen(false)}
         contentLabel="Add Upcoming Meal"
-        className="bg-white p-7 max-w-2xl mx-auto mt-18 rounded shadow-lg"
+        className="bg-white p-7  w-full max-w-4xl mx-auto mt-18 rounded shadow-lg"
         overlayClassName="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-start">
 
              <h3 className='text-xl font-semibold mb-5'>Add Upcoming Meal</h3>

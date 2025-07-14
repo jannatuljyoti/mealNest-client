@@ -43,15 +43,15 @@ const UpcomingMeal = () => {
     if(isLoading) return <p className='text-center py-10'>Loading...</p>
 
     return (
-        <div className='p-6 max-w-6xl mx-auto'>
-            <h2 className='text-2xl font-bold text-center mb-7'>Upcoming Meals</h2>
+        <div className='p-6 max-w-6xl mx-auto min-h-screen bg-sky-50'>
+            <h2 className='text-2xl text-gray-600 font-bold text-center mb-7'>Upcoming Meals</h2>
 
 
             <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5'>
                 {meals.map((meal)=>(
                     <div
                     key={meal._id}
-                    className='border p-5 rounded-lg shadow-md bg-white flex flex-col items-center'>
+                    className=' p-5 rounded-lg shadow-md bg-white flex flex-col items-center'>
 
                         <img src={meal.image} alt={meal.title} className='w-full h-40 object-cover rounded-md mb-4' />
 

@@ -64,8 +64,8 @@ const Meals = () => {
   const meals = data?.pages.flatMap(page=>page.meals || []) || [];
 
   return (
-    <div className='p-5 max-w-6xl mx-auto min-h-screen'>
-      <h2>Explore Meals</h2>
+    <div className='p-5 max-w-6xl mx-auto min-h-screen '>
+      <h2 className='text-2xl font-bold text-center text-gray-600 mb-7 '>Explore Meals</h2>
 
       <div className='flex flex-wrap gap-3 mb-5 justify-center'>
 
@@ -114,7 +114,7 @@ const Meals = () => {
 
         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-7'>
           {meals.map(meal=>(
-            <div key={meal._id} className='border rounded shadow-sm p-5'>
+            <div key={meal._id} className='bg-gray-100 rounded shadow-sm p-5 pb-5'>
               <img src={meal.image} alt={meal.title}
               className='w-full h-40 object-cover rounded' />
 
