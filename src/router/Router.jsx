@@ -26,6 +26,7 @@ import PaymentHistory from "../pages/UserAdmin/PaymentHistory";
 import PrivateRoute from "../routes/PrivateRoute";
 import CheckOut from "../pages/CheckOut/CheckOut";
 import MealDetails from "../pages/Home/MealsByCategory/MealDetails";
+import StripeProvider from "../context/StripeProvider";
 
 
 
@@ -51,8 +52,12 @@ export const router = createBrowserRouter([
     
   },
   {
-    path:"/checkout/:packageName",
-    element:<PrivateRoute><CheckOut></CheckOut></PrivateRoute>
+path: "/checkout/:packageName/:price",
+    element:<PrivateRoute>
+      <StripeProvider>
+        <CheckOut></CheckOut>
+      </StripeProvider>
+    </PrivateRoute>
   },
   {
     path:"/meal/:id",

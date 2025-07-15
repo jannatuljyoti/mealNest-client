@@ -23,9 +23,14 @@ const MemberShip = () => {
         
     ];
 
-    const handleCheckout = (pkgName)=>{
-        navigate(`/checkout/${pkgName}`);
-    }
+    const handleCheckout = (packageName, priceText) => {
+   
+    const price = parseFloat(priceText.replace(/[^\d]/g, ''));
+    const priceInDollar = (price / 120).toFixed(2); // Example rate: 1 USD = ৳120
+
+    navigate(`/checkout/${packageName}/${priceInDollar}`);
+};
+
 
     return (
         <div className='my-10 p-6   bg-gray-100'>
@@ -47,8 +52,11 @@ const MemberShip = () => {
                         </ul>
 
                         <button
-                        onClick={()=> handleCheckout(pkg.name)}
-                        className='btn bg-[#ec644b] text-white w-full'>Join Now</button>
+  onClick={() => handleCheckout(pkg.name, pkg.price)}
+  className='btn bg-[#ec644b] text-white w-full'
+>
+  Join Now
+</button>
 
                     </div>
                 ))}

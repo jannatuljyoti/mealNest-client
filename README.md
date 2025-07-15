@@ -1,12 +1,30 @@
-# React + Vite
+# Hostel Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-stack MERN (MongoDB, Express.js, React.js, Node.js) web application designed to manage university hostel meal services, reviews, and premium subscriptions. It offers a seamless experience for both students and administrators, ensuring efficient meal planning, request handling, and user interaction.
 
-Currently, two official plugins are available:
+##Admin Credentials
+- **Username/Email: 
+- **Password:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Live Website
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Key Features
+
+1. **Student & Admin Login System:** Secure authentication using Firebase (Email/Password + Social).
+2. **Role-Based Dashboards:** Separate interfaces for users and admins with protected/private routes.
+3. **Meals Management:** Admins can add, update, delete, publish meals, and handle upcoming meals.
+4. **Meal Requesting System:** Students can request meals and review them.
+5. **Like & Review Functionality:** Premium users can like upcoming meals, and all users can review regular meals.
+6. **Stripe Payment Integration:** Students can buy premium plans (Silver, Gold, Platinum) and gain access to exclusive features.
+7. **Dynamic Search & Filter:** Search meals by title, category, and price with infinite scrolling.
+8. **Responsive Design:** Optimized for mobile, tablet, and desktop views.
+9. **Notifications:** SweetAlert2 and toast notifications for CRUD and authentication events.
+10. **Persistent Login:** Authenticated users remain logged in across page reloads using JWT & Firebase.
+
+---
+
+
+
+

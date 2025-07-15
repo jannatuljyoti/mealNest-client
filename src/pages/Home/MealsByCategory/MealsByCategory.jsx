@@ -48,7 +48,7 @@ const meals =data?.meals || [];
             ):(
                 <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 justify-items-center'>
                     {
-                        meals.slice(0, 3).map((meal)=>(
+                        meals.slice(0, 6).map((meal)=>(
                             <MealsCard key={meal._id} meal={meal}/>
                         ))}
                 </div>
