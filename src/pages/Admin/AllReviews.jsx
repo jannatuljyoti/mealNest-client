@@ -66,7 +66,7 @@ const AllReviews = () => {
                                 <td className='px-4 py-2'>{review.userEmail}</td>
                                 <td className='px-4 py-2 space-x-2'>
                                     <button
-                                    className='btn btn-xs md:btn-sm  bg-[#ec644b] p-1 text-white'
+                                    className='btn btn-xs md:btn-sm  bg-[#ec644b] p-2 text-white'
                                     onClick={()=> navigate(`/meal/${review.mealId}`)}>
                                         View Meal
                                     </button>
