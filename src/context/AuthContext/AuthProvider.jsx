@@ -31,6 +31,14 @@ const AuthProvider = ({children}) => {
     };
 
 
+    const updateUserBadge = (badge) => {
+  setUser(prevUser => {
+    if (!prevUser) return prevUser;
+    return {...prevUser, badge };
+  });
+};
+
+
     const googleSignIn =()=>{
         setLoading(true);
         const provider = new GoogleAuthProvider();
@@ -55,7 +63,8 @@ const AuthProvider = ({children}) => {
         signIn,
         logOut,
         updateUserProfile,
-        googleSignIn
+        googleSignIn,
+        updateUserBadge
 
     }
 

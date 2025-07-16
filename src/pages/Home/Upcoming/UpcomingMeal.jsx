@@ -1,15 +1,40 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import useAuth from '../../../hooks/useAuth';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
 
 
 const UpcomingMeal = () => {
     const axiosSecure = useAxiosSecure();
     const {user} = useAuth();
+    const [userBadge, setUserBadge] = useState('bronze');
+   
+     const queryClient = useQueryClient();
 
-    const {data:meals = [], isLoading, refetch} = useQuery({
+    // Load user badge from MongoDB
+    useEffect(() => {
+        const fetchUserBadge = async () => {
+            if (user?.email) {
+                try {
+                    const res = await axiosSecure.get(`/api/users?search=${user.email}`);
+                   const foundUser = res.data.users.find(u => u.email === user.email);
+                    if (foundUser?.badge) {
+                        setUserBadge(foundUser.badge.toLowerCase());
+                    }
+                } catch (err) {
+                    console.error('Failed to fetch badge:', err);
+                }
+            }
+        };
+        fetchUserBadge();
+    }, [user, axiosSecure]);
+
+
+
+
+  // Fetch upcoming meals
+    const {data, isLoading, refetch} = useQuery({
         queryKey: ['upcoming-meals'],
         queryFn: async()=>{
             const res = await axiosSecure.get('/api/upcoming-meals');
@@ -17,30 +42,48 @@ const UpcomingMeal = () => {
         },
     });
 
+    const meals = data?.meals || [];
 
-    const handleLike = async (meal)=>{
-        if(!user){
-            toast.error('Login required to like!');
-            return;
-        }
 
-        try{
-            const res = await axiosSecure.post('/api/upcoming-meals/like',{
-                mealId: meal._id,
-                userEmail: user.email,
-                badge: user?.badge || 'bronze',
-            });
+    const handleLike = async (meal) => {
+  if (!user) {
+    toast.error('Login required to like!');
+    return;
+  }
 
-            if(res.data.message === 'Liked successfully'){
-                toast.success('You liked the meal');
-                refetch();
-            }
-        }catch(error){
-            toast.error(error.response?.data?.message || 'Failed to like');
-        }
-    };
+  try {
+    const res = await axiosSecure.post('/api/upcoming-meals/like', {
+      mealId: meal._id,
+      userEmail: user.email,
+      badge: userBadge,
+    });
+
+    if (res.data.message === 'Liked Successfully') {
+      toast.success('You liked the meal');
+
+       // ✅ Update local React Query cache without refetch
+      queryClient.setQueryData(['upcoming-meals'], (oldData) => {
+        if (!oldData) return { meals: [] };
+
+        const updatedMeals = oldData.meals.map((m) =>
+          m._id === meal._id ? { ...m, likes: (m.likes || 0) + 1 } : m
+        );
+
+        return { ...oldData, meals: updatedMeals };
+      });
+    }
+
+  } catch (error) {
+    toast.error(error.response?.data?.message || 'Failed to like');
+  }
+};
+
 
     if(isLoading) return <p className='text-center py-10'>Loading...</p>
+
+
+
+
 
     return (
         <div className='p-6 max-w-6xl mx-auto min-h-screen bg-sky-50'>
@@ -59,9 +102,12 @@ const UpcomingMeal = () => {
                         <p className='text-sm mb-1'>{meal.description?.slice(0,60)}...</p>
                         <p className='text-sm text-gray-600 mb-2'>Likes: {meal.likes || 0}</p>
 
-                        <button 
-                        onClick={()=>handleLike(meal)}
-                        className='btn bg-[#0c6c7c] hover:bg-blue-600 text-white mt-auto'>Like</button>
+                          <button
+                            onClick={() => handleLike(meal)}
+                            disabled={!['silver', 'gold', 'platinum'].includes(userBadge)}
+                            className='btn bg-[#0c6c7c] hover:bg-blue-600 text-white mt-auto disabled:opacity-50 disabled:cursor-not-allowed'>
+                            Like
+                        </button>
 
                     </div>
                 ))}

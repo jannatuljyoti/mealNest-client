@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import { useNavigate } from 'react-router';
 import { useQuery } from '@tanstack/react-query';
@@ -13,13 +13,26 @@ const AllMeals = () => {
     const [editingMealId, setEditingMealId]=useState(null);
     const [editedMeal, setEditedMeal]=useState({});
 
-    const {data:allMeals = [], refetch} = useQuery({
-        queryKey: ['allMeals', sortBy,order],
+      //  Pagination state
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+
+    //  Reset to page 1 when sort/order changes
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [sortBy, order]);
+
+    const {data = {}, refetch} = useQuery({
+        queryKey: ['allMeals', sortBy,order,currentPage],
         queryFn: async()=>{
-            const res = await axiosSecure.get(`/api/all-meals?sortBy=${sortBy}&order=${order}`);
+            const res = await axiosSecure.get(
+      `/api/all-meals?sortBy=${sortBy}&order=${order}&page=${currentPage}&limit=${itemsPerPage}` 
+    );;
             return res.data;
         }
     });
+    const allMeals = data.meals || [];
+      const totalPages = data.totalPages || 1;
 
     const handleSortChange =(e)=>setSortBy(e.target.value);
     const handleOrderChange =(e)=>setOrder(e.target.value);
@@ -65,23 +78,23 @@ const AllMeals = () => {
 
 
     return (
-        <div className='p-5 md:p-7'>
+        <div className='p-5 md:p-7 bg-amber-500'>
             <h2 className='text-2xl font-bold mb-5 text-center md:text-left'>All Meals</h2>
 
-            <div className='flex flex-col sm:flex-row gap-4 mb-4'>
-                <select value={sortBy} onChange={handleSortChange} className='border px-3 py-2 rounded'>
+            <div className='flex flex-col sm:flex-row gap-4  mb-4'>
+                <select value={sortBy} onChange={handleSortChange} className='bg-base-100  px-3 py-2 rounded'>
                     <option value="likes">Sort By Likes</option>
                     <option value="reviews_count">Sort by Reviews Count</option>
                 </select>
 
-                <select value={order} onChange={handleOrderChange} className='border px-3 py-2 rounded'>
+                <select value={order} onChange={handleOrderChange} className='bg-base-100 px-3 py-2 rounded'>
                     <option value="desc">Descending</option>
                     <option value="asc">Ascending</option>
                 </select>
 
             </div>
 
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto bg-base-100">
     <table className="table-auto min-w-[768px] border border-gray-300 rounded   w-full">
 
 
@@ -171,9 +184,38 @@ const AllMeals = () => {
           </tbody>
         </table>
       </div>
-            
-        </div>
-    );
+
+      
+         {/* ✅ NEW: Pagination Footer */}
+      <div className='mt-6 flex flex-wrap justify-center gap-2'>
+        <button
+          onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+          disabled={currentPage === 1}
+          className='btn text-white bg-amber-950 btn-outline'
+        >
+          Prev
+        </button>
+
+        {[...Array(totalPages).keys()].map((num) => (
+          <button
+            key={num}
+            onClick={() => setCurrentPage(num + 1)}
+            className={`btn btn-sm ${currentPage === num + 1 ? 'bg-amber-950 text-white' : 'btn-outline'}`}
+          >
+            {num + 1}
+          </button>
+        ))}
+
+        <button
+          onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+          disabled={currentPage === totalPages}
+          className='btn bg-amber-950 text-white btn-outline'
+        >
+          Next
+        </button>
+      </div>
+    </div>
+  );
 };
 
 export default AllMeals;

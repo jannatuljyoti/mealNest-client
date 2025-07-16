@@ -4,18 +4,23 @@ import useAxiosSecure from '../../hooks/useAxiosSecure';
 import { useNavigate, useParams } from 'react-router';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../context/AuthContext/AuthContext';
+import MealNestLogo from '../shared/mealnest/MealNestLogo'
+import { useQueryClient } from '@tanstack/react-query';
 
 const CheckOut = () => {
     const stripe = useStripe();
     const elements = useElements();
     const axiosSecure = useAxiosSecure();
-    const {user}=useContext(AuthContext);
+    const {user }=useContext(AuthContext);
     const [clientSecret, setClientSecret] = useState('');
     const [processing, setProcessing] = useState(false);
     const navigate = useNavigate();
-
     const { packageName, price: priceParam } = useParams();
-const price = parseFloat(priceParam); 
+const price = parseFloat(priceParam); // no need for useState
+ 
+  const queryClient = useQueryClient(); 
+
+  
 
     useEffect(()=>{
         axiosSecure.post('/api/create-payment-intent',{ price: Number(price) })
@@ -54,6 +59,10 @@ const price = parseFloat(priceParam);
 
             await axiosSecure.post('/api/save-payment', payment);
             Swal.fire('Success', 'Payment complete! Badge Assigned', 'success');
+
+            // ✅ Invalidate the user profile query to fetch updated badge
+        queryClient.invalidateQueries(['user-profile', user.email]);
+
           navigate(`/checkout/${packageName}/${price}`);
         }
         setProcessing(false);
@@ -61,7 +70,10 @@ const price = parseFloat(priceParam);
 
 
     return (
-        <div className='p-7 max-w-md mx-auto bg-white rounded shadow'>
+        <section>
+            <MealNestLogo></MealNestLogo>
+            <div className='p-7 max-w-md mx-auto bg-white rounded shadow'>
+            
             <h2 className='text-xl font-bold mb-5'><strong>Package:</strong> {packageName}</h2>
             <h3 className='mb-5'><strong>Price:</strong> ${price}</h3>
             
@@ -77,6 +89,7 @@ const price = parseFloat(priceParam);
 
             </form>
         </div>
+        </section>
     );
 };
 

@@ -6,15 +6,18 @@ import Swal from 'sweetalert2';
 const ServeMeals = () => {
     const axiosSecure= useAxiosSecure();
     const [search, setSearch] = useState('');
+    const[page, setPage] = useState(1);
+    const limit =10;
 
-
-     const {data: requests = [], refetch} = useQuery({
-        queryKey: ['serveMeals', search],
+     const {data = {}, refetch} = useQuery({
+        queryKey: ['serveMeals', search, page],
         queryFn: async()=> {
-            const res = await axiosSecure.get(`/api/admin/meal-requests?search=${search}`);
+            const res = await axiosSecure.get(`/api/admin/meal-requests?search=${search}&page=${page}&limit=${limit}`);
             return res.data;
         }
     });
+
+    const {requests = [], total = 0, totalPages = 1 } = data;
 
       const handleServe = async(id)=>{
             const confirm = await Swal.fire({
@@ -101,7 +104,21 @@ const ServeMeals = () => {
                 </table>
 
             </div>
-            
+
+            <div className="flex justify-center mt-4 space-x-2">
+  {[...Array(totalPages).keys()].map((num) => (
+    <button
+      key={num}
+      onClick={() => setPage(num + 1)}
+      className={`px-4 py-2 rounded ${
+        page === num + 1 ? 'bg-[#0c6c7c] text-white' : 'bg-gray-300'
+      }`}
+    >
+      {num + 1}
+    </button>
+  ))}
+</div>
+
         </div>
     );
 };

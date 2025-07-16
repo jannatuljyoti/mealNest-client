@@ -2,23 +2,28 @@ import React, { useState } from 'react';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import { useForm } from 'react-hook-form';
 import { useQuery } from '@tanstack/react-query';
-import { toast } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import Modal from 'react-modal'
 
 const UpcomingMeals = () => {
     const axiosSecure = useAxiosSecure();
     const [isModalOpen, setIsModalOpen] =useState(false);
+    const [page, setPage] = useState(1);
+    const limit=10;
 
     const {register, handleSubmit, reset} = useForm();
 
     // Fetch upcoming meals
-    const {data: meals=[], refetch} =useQuery({
-        queryKey:['upcoming-meals'],
+    const {data = {}, refetch, isLoading} =useQuery({
+        queryKey:['upcoming-meals',page],
         queryFn: async()=>{
-            const res = await axiosSecure.get('/api/upcoming-meals');
+            const res = await axiosSecure.get(`/api/upcoming-meals?page=${page}&limit=${limit}`);
             return res.data;
         },
     });
+
+    const meals = data.meals || [];
+    const totalPages = data.totalPages || 1;
 
     // add new upcoming meal
     const onSubmit = async(data)=>{
@@ -40,20 +45,56 @@ const UpcomingMeals = () => {
     };
 
       // Publish meal to main collection
-      const handlePublish = async(id)=>{
-        try{
-            const res = await axiosSecure.post(`/api/publish-upcoming/${id}`);
-            if(res.data.result.insertedId){
-                toast.success('Meal published');
-                refetch();
-            }
-        }catch(err){
-            toast.error('Failed to publish');
-        }
-      }
+    const handlePublish = async (meal) => {
+  // ✅ Frontend validation: check if likes < 10
+  if (meal.likes < 10) {
+    return toast.error("Need at least 10 likes to publish");
+  }
+
+  try {
+    const res = await axiosSecure.post(`/api/publish-upcoming/${meal._id}`);
+
+    if (res.data.result?.insertedId) {
+      toast.success("Meal published");
+      refetch();
+    }
+  } catch (err) {
+    console.log("Publish error:", err);
+
+    const message =
+      err.response?.data?.message ||
+      err.message ||
+      "Something went wrong while publishing";
+
+    toast.error(message);
+  }
+};
+
+
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center h-[300px]">
+        <span className="loading loading-spinner loading-lg text-primary"></span>
+      </div>
+    );
+  }
 
     return (
         <div className='p-7'>
+
+            
+            <ToastContainer 
+                position="top-right"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
+           
             <div className='flex justify-between items-center mb-5'>
                 <h2 className='text-2xl font-bold text-gray-600'>Upcoming Meals</h2>
 
@@ -85,10 +126,13 @@ const UpcomingMeals = () => {
                             <td>{meal.likes}</td>
                             <td>{new Date(meal.postTime).toLocaleString()}</td>
                             <td>
-                                <button onClick={()=> handlePublish(meal._id)}
-                                    className='bg-[#ec644b] text-white px-4 py-2 rounded hover:bg-amber-500'>
-                                    Publish
-                                </button>
+                               <button
+  onClick={() => handlePublish(meal)}
+  className="bg-[#ec644b] text-white px-4 py-2 rounded hover:bg-amber-500"
+>
+  Publish
+</button>
+
                             </td>
                         </tr>
                     ))}
@@ -104,6 +148,21 @@ const UpcomingMeals = () => {
             </table>
 
         </div>
+
+        <div className="flex justify-center gap-2 mt-6">
+  {Array.from({ length: totalPages }, (_, i) => (
+    <button
+      key={i}
+      onClick={() => setPage(i + 1)}
+      className={`px-4 py-2 border rounded ${
+        page === i + 1 ? 'bg-[#0c6c7c] text-white' : 'bg-white'
+      }`}
+    >
+      {i + 1}
+    </button>
+  ))}
+</div>
+
 
         {/* modal for adding upcoming meal */}
         <Modal

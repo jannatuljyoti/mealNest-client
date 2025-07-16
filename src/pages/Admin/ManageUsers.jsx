@@ -8,22 +8,32 @@ const ManageUsers = () => {
   const axiosSecure = useAxiosSecure();
   const [searchTerm, setSearchTerm] = useState('');
   const [debouncedTerm, setDebouncedTerm] = useState('');
+   const [currentPage, setCurrentPage] = useState(1);
+    const limit = 10;
+
 
   // debounce search input
   useEffect(() => {
     const timeout = setTimeout(() => {
       setDebouncedTerm(searchTerm);
+      setCurrentPage(1);
     }, 500);
     return () => clearTimeout(timeout);
   }, [searchTerm]);
 
-  const { data: users = [], refetch, isLoading } = useQuery({
-    queryKey: ['all-users', debouncedTerm],
+  const { data = {}, refetch, isLoading } = useQuery({
+    queryKey: ['all-users', debouncedTerm,currentPage],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/api/users?search=${debouncedTerm}`);
+      const res = await axiosSecure.get(
+        `/api/users?search=${debouncedTerm}&page=${currentPage}&limit=${limit}`
+      );
       return res.data;
     },
+    keepPreviousData: true,
   });
+
+  const users = data.users || [];
+  const totalPages = data.totalPages || 1;
 
   const handleMakeAdmin = async (user) => {
     try {
@@ -109,6 +119,24 @@ const ManageUsers = () => {
             )}
           </tbody>
         </table>
+      </div>
+
+
+    {/* Pagination Footer */}
+      <div className="flex justify-center mt-6 gap-2">
+        {[...Array(totalPages).keys()].map((page) => (
+          <button
+            key={page}
+            onClick={() => setCurrentPage(page + 1)}
+            className={`px-3 py-1 border rounded ${
+              currentPage === page + 1
+                ? 'bg-amber-950 text-white'
+                : 'bg-white text-black'
+            }`}
+          >
+            {page + 1}
+          </button>
+        ))}
       </div>
     </div>
   );

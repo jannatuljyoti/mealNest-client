@@ -12,7 +12,7 @@ const MyProfile = () => {
         enabled: !!user?.email,
         queryFn: async () =>{
             const res = await axiosSecure.get(`/api/users?search=${user.email}`);
-            return res.data[0];
+              return res.data.users?.[0]
         },
     });
 

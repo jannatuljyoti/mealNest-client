@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import { useNavigate } from 'react-router';
 import { useQuery } from '@tanstack/react-query';
@@ -7,14 +7,20 @@ import Swal from 'sweetalert2';
 const AllReviews = () => {
     const axiosSecure = useAxiosSecure();
     const navigate = useNavigate();
+    const [currentPage, setCurrentPage] =useState(1);
+    const itemsPerPage = 10;
 
-    const {data: reviews = [], refetch} = useQuery({
-        queryKey: ['adminAllReviews'],
+    const {data = {}, refetch, isLoading} = useQuery({
+        queryKey: ['adminAllReviews', currentPage],
         queryFn: async()=> {
-            const res = await axiosSecure.get('/api/admin/all-reviews');
+            const res = await axiosSecure.get(`/api/admin/all-reviews?page=${currentPage}&limit=${itemsPerPage}`);
             return res.data;
-        }
+        },
+        keepPreviousData: true,
     });
+
+    const reviews = data.reviews || [];
+    const totalPages = data.totalPages || 1;
 
 
     const handleDelete = async(id)=>{
@@ -38,11 +44,13 @@ const AllReviews = () => {
         }
     };
 
+    if(isLoading) return <p className='text-center py-10'>Loading...</p>
+
     return (
-        <div className='p-4 bg-gray-200 min-h-screen'>
+        <div className='p-4 bg-amber-500 '>
             <h2 className='text-xl text-center text-gray-600 font-bold mb-4'>All Reviews</h2>
 
-            <div className='overflow-x-auto'>
+            <div className='overflow-x-auto bg-base-100'>
                 <table className='min-w-full divide-y divide-gray-200'>
                     <thead className='bg-gray-100 text-sm text-gray-700'>
                         <tr>
@@ -91,8 +99,23 @@ const AllReviews = () => {
                 </table>
 
             </div>
+
             
-        </div>
+         {/* Pagination Footer */}
+      <div className='flex justify-center mt-6 gap-2'>
+        {[...Array(totalPages).keys()].map((page) => (
+          <button
+            key={page}
+            onClick={() => setCurrentPage(page + 1)}
+            className={`px-3 py-1 border rounded ${
+              currentPage === page + 1 ? 'bg-amber-950 text-white' : 'bg-white text-black'
+            }`}
+          >
+            {page + 1}
+          </button>
+        ))}
+      </div>
+    </div>
     );
 };
 
