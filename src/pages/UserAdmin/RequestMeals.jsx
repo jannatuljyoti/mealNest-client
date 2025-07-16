@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import useAuth from '../../hooks/useAuth';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
@@ -7,16 +7,20 @@ import { toast } from 'react-toastify';
 const RequestMeals = () => {
     const {user}=useAuth();
     const axiosSecure = useAxiosSecure();
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 10;
 
 
-    const{data: requests= [], refetch} = useQuery({
-        queryKey:['meal-requests', user?.email],
+    const{data = {}, refetch} = useQuery({
+        queryKey:['meal-requests', user?.email, currentPage],
         enabled: !!user?.email,
         queryFn: async()=>{
-            const res = await axiosSecure.get(`/api/requests?email=${user.email}`);
+            const res = await axiosSecure.get(`/api/requests?email=${user.email}&page=${currentPage}&limit=${itemsPerPage}`);
             return res.data;
         }
     });
+
+    const {requests = [], totalPages= 1} =data;
 
     const handleCancel = async(id)=>{
         try{
@@ -30,11 +34,11 @@ const RequestMeals = () => {
     };
 
     return (
-        <div className='p-7'>
-            <h2 className='text-2xl text-gray-600 font-bold mb-5'>Requested Meals</h2>
-            <div className='overflow-x-auto'>
+        <div className='p-7 bg-amber-100'>
+            <h2 className='text-2xl text-gray-600 text-center font-bold mb-5'>Requested Meals</h2>
+            <div className='overflow-x-auto bg-base-100'>
                 <table className='table w-full'>
-                    <thead className='bg-gray-100'>
+                    <thead className='bg-base-100'>
                         <tr>
                             <th>Meal Title</th>
                             <th>Likes</th>
@@ -74,6 +78,18 @@ const RequestMeals = () => {
                 </table>
 
             </div>
+            <div className='flex justify-center mt-6 gap-2'>
+  {Array.from({ length: totalPages }, (_, i) => (
+    <button
+      key={i}
+      onClick={() => setCurrentPage(i + 1)}
+      className={`px-3 py-1 rounded ${currentPage === i + 1 ? 'bg-amber-700 text-white' : 'bg-base-100 text-gray-700'}`}
+    >
+      {i + 1}
+    </button>
+  ))}
+</div>
+
             
         </div>
     );

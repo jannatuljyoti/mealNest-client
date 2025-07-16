@@ -10,15 +10,19 @@ const MyReviews = () => {
     const axiosSecure = useAxiosSecure();
     const [editingId, setEditingId] = useState(null);
     const [newReview, setNewReview]=useState('');
+    const [page, setPage] = useState(1);
+    const limit = 10;
 
-
-     const{data: reviews = [], refetch} = useQuery({
-        queryKey:['my-reviews', user?.email],
+     const{data, refetch} = useQuery({
+        queryKey:['my-reviews', user?.email,page],
         queryFn: async()=>{
-            const res = await axiosSecure.get(`/api/reviews?email=${user.email}`);
+            const res = await axiosSecure.get(`/api/reviews?email=${user.email}&page=${page}&limit=${limit}`);
             return res.data;
         },
+        enabled: !!user?.email
     });
+
+    const {reviews = [], total=0, totalPages = 1} = data || {};
 
     const handleDelete = async(id)=>{
         try{
@@ -47,11 +51,11 @@ const MyReviews = () => {
 
 
     return (
-          <div className='p-4 md:p-7'>
-            <h2 className='text-xl md:text-2xl font-bold mb-5 text-center text-gray-600 md:text-left'>My Reviews</h2>
-            <div className='overflow-x-auto'>
+          <div className='p-4 md:p-7 bg-amber-50'>
+            <h2 className='text-xl  md:text-2xl font-bold mb-5 text-center text-gray-600 md:text-left'>My Reviews</h2>
+            <div className='overflow-x-auto bg-base-100'>
                 <table className='table w-full text-sm md:text-base'>
-                    <thead className='bg-gray-100'>
+                    <thead className='bg-base-100'>
                         <tr>
                             <th>Meal </th>
                             <th>Likes</th>
@@ -130,6 +134,21 @@ const MyReviews = () => {
                 </table>
 
             </div>
+
+            <div className="flex justify-center mt-6">
+  <div className="join">
+    {Array.from({ length: totalPages }, (_, i) => (
+      <button
+        key={i}
+        onClick={() => setPage(i + 1)}
+        className={`join-item btn btn-sm ${page === i + 1 ? 'bg-amber-950 text-white' : 'btn-outline'}`}
+      >
+        {i + 1}
+      </button>
+    ))}
+  </div>
+</div>
+
             
         </div>
     );
