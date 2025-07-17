@@ -4,8 +4,8 @@ import useAuth from './useAuth';
 
 
 const axiosSecure = axios.create({
-  // baseURL:import.meta.env.VITE_API_URL,
-  baseURL: `http://localhost:5000`
+  baseURL:`https://meal-nest-code-server.vercel.app`
+  
 });
 
 const useAxiosSecure = () => {
