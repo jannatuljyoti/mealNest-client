@@ -3,11 +3,11 @@
 A full-stack MERN (MongoDB, Express.js, React.js, Node.js) web application designed to manage university hostel meal services, reviews, and premium subscriptions. It offers a seamless experience for both students and administrators, ensuring efficient meal planning, request handling, and user interaction.
 
 ##Admin Credentials
-- **Username/Email: 
-- **Password:
+- **Username/Email: mina@khatun.com
+- **Password:123456qwQW
 
 ## Live Website
-
+https://mealnest-94d50.web.app/
 ---
 
 ## Key Features
