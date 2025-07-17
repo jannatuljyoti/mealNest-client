@@ -27,7 +27,7 @@ const AllMeals = () => {
         queryFn: async()=>{
             const res = await axiosSecure.get(
       `/api/all-meals?sortBy=${sortBy}&order=${order}&page=${currentPage}&limit=${itemsPerPage}` 
-    );;
+    );
             return res.data;
         }
     });
