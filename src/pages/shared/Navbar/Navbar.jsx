@@ -29,8 +29,22 @@ const Navbar = () => {
       isActive? "text-[#ec644b]  font-semibold": ""}>Upcoming Meals</NavLink></li>
         
     </>
+
+    const loggedIn = <>
+    <li>
+      <NavLink to="/faqs"
+      className={({isActive})=> isActive? "text-[#ec644b] font-semibold": ""}>FAQs</NavLink>
+    </li>
+    <li>
+      <NavLink to="/offer"
+      className={({isActive})=> isActive? "text-[#ec644b] font-semibold": ""}>Offer</NavLink>
+    </li>
+    
+    </>;
+
     return (
-        <div className="navbar bg-base-100 shadow-sm">
+        <div className='sticky top-0 z-50 w-full bg-[#fff7f5] shadow-md'>
+          <div className="navbar bg-base-100 shadow-sm">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -54,6 +68,7 @@ const Navbar = () => {
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
           >
             {navItems}
+            {user && loggedIn}
           </ul>
         </div>
         <Link to="/" className="btn btn-ghost text-xl">
@@ -61,8 +76,12 @@ const Navbar = () => {
         </Link>
       </div>
 
+
+
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">{navItems}</ul>
+        <ul className="menu menu-horizontal px-1">{navItems}
+          {user && loggedIn}
+        </ul>
       </div>
 
       <div className="navbar-end gap-2">
@@ -119,6 +138,7 @@ const Navbar = () => {
         )}
       </div>
     </div>
+        </div>
     );
 };
 

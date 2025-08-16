@@ -17,6 +17,8 @@ import AllMeals from "../pages/Admin/AllMeals";
 import AllReviews from "../pages/Admin/AllReviews";
 import ServeMeals from "../pages/Admin/ServeMeals";
 import UpcomingMeals from "../pages/Admin/UpcomingMeals";
+import Faqs from "../pages/FAQs/Faqs";
+import Offer from "../pages/OFFER/Offer";
 
 import UserDashboardLayout from "../pages/UserAdmin/UserDashboardLayout";
 import MyProfile from "../pages/UserAdmin/MyProfile";
@@ -48,6 +50,14 @@ export const router = createBrowserRouter([
         path: "upcoming-meal",
         element:<UpcomingMeal></UpcomingMeal>
       },
+      {
+        path:"faqs",
+        element:<Faqs></Faqs>
+      },
+      {
+        path:"offer",
+        element:<Offer></Offer>
+      }
     ],
     
   },
