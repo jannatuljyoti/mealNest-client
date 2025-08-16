@@ -25,8 +25,8 @@ const meals =data?.meals || [];
     
 
     return (
-        <div className='my-10 p-7 bg-emerald-50'>
-            <h2 className='text-2xl font-bold text-[#ec644b] text-center mb-7'
+        <div className='py-10  bg-gradient-to-r from-green-50 to-orange-50'>
+            <h2 className='text-3xl font-bold text-[#ec644b] text-center mb-7'
             >Meals by Category</h2>
 
             {/* tabs */}
@@ -42,7 +42,7 @@ const meals =data?.meals || [];
 
             {/* Meals */}
             {isLoading ?(
-                <div className='flex justify-center items-center min-h[200px]'>
+                <div className='flex justify-center items-center min-h[200px] '>
                     <span className='loading loading-dots loading-lg'></span>
                     </div>
             ):(

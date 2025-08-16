@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 
 
 const axiosSecure = axios.create({
-  baseURL:`https://meal-nest-code-server.vercel.app`
+  baseURL:`https://meal-nest-server-chi.vercel.app`
   
 });
 

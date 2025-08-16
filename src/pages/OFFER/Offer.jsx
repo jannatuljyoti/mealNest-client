@@ -20,7 +20,7 @@ const eventsData = [
 
 const Offer = () => {
     return (
-          <div className="max-h-screen mx-auto px-4 py-16">
+          <div className="min-h-screen mx-auto px-4 py-16">
       <h1 className="text-4xl font-bold text-center text-[#ec644b] mb-10">Events & Offers</h1>
       <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-6">
         {eventsData.map((event, index) => (
