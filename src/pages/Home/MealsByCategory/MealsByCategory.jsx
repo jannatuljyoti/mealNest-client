@@ -25,7 +25,7 @@ const meals =data?.meals || [];
     
 
     return (
-        <div className='py-10  bg-gradient-to-r from-green-50 to-orange-50'>
+        <div className='py-10   bg-gradient-to-r from-green-50 to-orange-50'>
             <h2 className='text-3xl font-bold text-[#ec644b] text-center mb-7'
             >Meals by Category</h2>
 

@@ -4,6 +4,7 @@ import MealNestLogo from '../mealnest/MealNestLogo';
 import { IoIosNotificationsOutline } from 'react-icons/io';
 import useAuth from '../../../hooks/useAuth';
 import useAdmin from '../../../hooks/useAdmin'
+import ThemeToggle from '../ThemeToggle';
 
 const Navbar = () => {
   const {user, logOut} = useAuth();
@@ -43,7 +44,10 @@ const Navbar = () => {
     </>;
 
     return (
-        <div className='sticky top-0 z-50 w-full bg-[#fff7f5] shadow-md'>
+        <div className='sticky top-0 z-50 w-full 
+                bg-[#fff7f5] text-gray-800 
+                dark:bg-gray-900 dark:text-gray-100 
+                shadow-md'>
           <div className="navbar bg-base-100 shadow-sm">
       <div className="navbar-start">
         <div className="dropdown">
@@ -88,6 +92,8 @@ const Navbar = () => {
         <p>
           <IoIosNotificationsOutline className="w-8 h-8 text-[#ec644b]" />
         </p>
+
+        <ThemeToggle></ThemeToggle>
 
         {user ? (
           <div className="dropdown dropdown-end">
