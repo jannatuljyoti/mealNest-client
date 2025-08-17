@@ -30,11 +30,11 @@ const meals =data?.meals || [];
             >Meals by Category</h2>
 
             {/* tabs */}
-            <div className='tabs tabs-boxed justify-center mb-7'>
+<div className="tabs tabs-boxed justify-center mb-7 bg-base-200 text-base-content">
                 {categories.map((cats)=>(
                     <button 
                     key={cats}
-                    className={`tab ${select===cats ? "tab-active" : ""}`}
+                    className={`tab ${select === cats ? "tab-active text-amber-600 " : ""}`}
                     onClick={()=> setSelect(cats)}>{cats}</button>
                 ))}
 
