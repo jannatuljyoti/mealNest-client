@@ -133,16 +133,16 @@ const Navbar = () => {
                 <ul
                   className="absolute right-0 mt-2 w-48 bg-base-100 text-base-content shadow-lg rounded-lg p-2 z-50"
                 >
-                  <li className="px-2 py-1 font-semibold">
+                  <li className="px-2 py-1 text-[#ec644b] font-semibold">
                     {user.displayName || "User"}
                   </li>
                   <li>
                     {isAdminLoading ? (
-                      <span className="text-sm opacity-70">Checking Role...</span>
+                      <span className="text-sm text-[#ec644b] opacity-70">Checking Role...</span>
                     ) : (
                       <Link
                         to={isAdmin ? "/dashboard/profile" : "/user-dashboard"}
-                        className="block px-2 py-1 text-sm hover:bg-base-200 rounded"
+                        className="block px-2 py-1 text-sm text-[#ec644b] hover:bg-base-200 rounded"
                       >
                         Dashboard
                       </Link>
@@ -151,7 +151,7 @@ const Navbar = () => {
                   <li>
                     <button
                       onClick={handleLogOut}
-                      className="block w-full text-left px-2 py-1 text-sm hover:bg-base-200 rounded"
+                      className="block w-full text-left px-2 py-1 text-sm text-[#ec644b] hover:bg-base-200 rounded"
                     >
                       Logout
                     </button>
@@ -160,7 +160,7 @@ const Navbar = () => {
               )}
             </div>
           ) : (
-            <Link to="/join-us" className="btn btn-primary text-xl">
+            <Link to="/join-us" className="btn bg-[#ec644b] text-white text-xl">
               Join Us
             </Link>
           )}

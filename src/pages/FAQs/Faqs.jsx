@@ -24,7 +24,7 @@ const faqsData = [
 
 const Faqs = () => {
     return (
-        <div className="max-w-7xl mx-auto px-4 py-16">
+        <div className="min-h-screen mx-auto px-4 py-16">
       <h1 className="text-4xl font-bold text-center text-[#ec644b] mb-10">Frequently Asked Questions</h1>
       <div className="space-y-6">
         {faqsData.map((faq, index) => (

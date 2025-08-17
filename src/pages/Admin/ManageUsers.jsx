@@ -63,7 +63,7 @@ const ManageUsers = () => {
   if (isLoading) return <p className="text-center py-10">Loading...</p>;
 
   return (
-    <div className="p-4 bg-amber-500 max-h-screen">
+    <div className="p-4 bg-base-100 max-h-screen">
       <h2 className="text-2xl  font-bold mb-4">Manage Users</h2>
 
       {/* Search Input */}
@@ -132,7 +132,7 @@ const ManageUsers = () => {
             onClick={() => setCurrentPage(page + 1)}
             className={`px-3 py-1 border rounded ${
               currentPage === page + 1
-                ? 'bg-amber-950 text-white'
+                ? 'bg-[#ec644b] text-white'
                 : 'bg-white text-black'
             }`}
           >

@@ -65,7 +65,8 @@ const Meals = () => {
 
   return (
     <div className='p-5 max-w-6xl mx-auto min-h-screen '>
-      <h2 className='text-2xl font-bold text-center text-gray-600 mb-7 '>Explore Meals</h2>
+      <h2 className='text-2xl font-bold text-center text-[#ec644b]
+      mb-7 '>Explore Meals</h2>
 
       <div className='flex flex-wrap gap-3 mb-5 justify-center'>
 
@@ -118,12 +119,12 @@ const Meals = () => {
               <img src={meal.image} alt={meal.title}
               className='w-full h-40 object-cover rounded' />
 
-              <h3 className='text-xl font-semibold
+              <h3 className='text-xl text-gray-600 font-semibold
               mt-3'>{meal.title}</h3>
               <p className='text-sm text-gray-600'><strong>Category:</strong> {meal.category}</p>
-              <p className='text-sm '><strong>Price:</strong> ৳{meal.price}</p>
-              <p className='text-sm '><strong>Likes:</strong> {meal.likes}</p>
-              <p className='text-sm '><strong>Reviews:</strong> {meal.reviews_count || 0}</p>
+              <p className='text-sm text-gray-600'><strong>Price:</strong> ৳{meal.price}</p>
+              <p className='text-sm text-gray-600'><strong>Likes:</strong> {meal.likes}</p>
+              <p className='text-sm text-gray-600'><strong>Reviews:</strong> {meal.reviews_count || 0}</p>
 
             </div>
           ))}

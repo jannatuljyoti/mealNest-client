@@ -11,7 +11,7 @@ const JoinUs = () => {
 
     return (
         
-        <div className="p-9 bg-[#f4f8ff] min-h-screen flex flex-col">
+        <div className="p-9  min-h-screen flex flex-col">
             <div className='mb-7 '>
               <MealNestLogo></MealNestLogo>
             </div>

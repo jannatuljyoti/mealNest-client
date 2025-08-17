@@ -100,7 +100,7 @@ const UpcomingMeals = () => {
 
                 <button
                 onClick={()=> setIsModalOpen(true)}
-                className='bg-[#0c6c7c] text-white px-5 py-3 rounded hover:bg-blue-600'>
+                className='bg-[#0c6c7c] text-white px-5 py-3 rounded hover:bg-cyan-600'>
                     Add Upcoming Meal
                 </button>
 
@@ -109,7 +109,7 @@ const UpcomingMeals = () => {
         {/* Table */}
         <div className='overflow-x-auto'>
             <table className='table w-full'>
-                <thead className='bg-gray-100'>
+                <thead className='text-gray-600'>
                     <tr>
                         <th>Title</th>
                         <th>Likes</th>
@@ -122,9 +122,9 @@ const UpcomingMeals = () => {
                 <tbody>
                     {meals.map((meal)=>(
                         <tr key={meal._id}>
-                            <td>{meal.title}</td>
-                            <td>{meal.likes}</td>
-                            <td>{new Date(meal.postTime).toLocaleString()}</td>
+                            <td className='text-gray-600'>{meal.title}</td>
+                            <td className='text-gray-600'>{meal.likes}</td>
+                            <td className='text-gray-600'>{new Date(meal.postTime).toLocaleString()}</td>
                             <td>
                                <button
   onClick={() => handlePublish(meal)}
@@ -172,7 +172,7 @@ const UpcomingMeals = () => {
         className="bg-white p-7  w-full max-w-4xl mx-auto mt-18 rounded shadow-lg"
         overlayClassName="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-start">
 
-             <h3 className='text-xl font-semibold mb-5'>Add Upcoming Meal</h3>
+             <h3 className='text-xl text-[#ec644b] font-semibold mb-5'>Add Upcoming Meal</h3>
 
         <form onSubmit={handleSubmit(onSubmit)}
         className='grid grid-cols-1 gap-5'>
@@ -187,7 +187,7 @@ const UpcomingMeals = () => {
           type='text'
           {...register('category', {required:true})}
           placeholder='Category (Breakfast/Lunch/Dinner)'
-          className='input input-bordered'/>
+          className='input  input-bordered'/>
 
           <input
           type='text'
@@ -238,13 +238,13 @@ const UpcomingMeals = () => {
             <button
             type='button'
             onClick={()=> setIsModalOpen(false)}
-             className='bg-gray-400 px-5 py-3 rounded text-white hover:bg-gray-500 '>
+             className='bg-[#ec644b] px-5 py-3 rounded text-white hover:bg-amber-900 '>
                 Cancel
             </button>
 
             <button
             type='submit'
-            className='bg-green-600 px-5 py-3 rounded text-white hover:bg-green-700'>
+            className='bg-[#0c6c7c] px-5 py-3 rounded text-white hover:bg-cyan-700'>
                 Add Meal
             </button>
         

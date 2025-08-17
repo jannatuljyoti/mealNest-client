@@ -56,7 +56,7 @@ const ServeMeals = () => {
 
             <div className='overflow-x-auto'>
                 <table className='table w-full'>
-                    <thead className='bg-gray-100'>
+                    <thead className='bg-gray-100 text-gray-600'>
                         <tr>
                             <th className='px-4 text-left py-2'>Meal Title</th>
                             <th className='px-4 text-left py-2'>User Name</th>
@@ -70,13 +70,13 @@ const ServeMeals = () => {
                     <tbody>
                         {requests.map((request)=>(
                             <tr key={request._id}>
-                                <td className='px-4 py-2'>{request.mealTitle}</td>
-                                <td className='px-4 py-2'>{request.userName || 'N/A'}</td>
+                                <td className='px-4 text-gray-600 py-2'>{request.mealTitle}</td>
+                                <td className='px-4 text-gray-600 py-2'>{request.userName || 'N/A'}</td>
                             
-                                <td className='px-4 py-2'>{request.userEmail}</td>
+                                <td className='px-4 text-gray-600 py-2'>{request.userEmail}</td>
 
                                 <td>
-                                    <span className={`badge ${request.status === 'delivered' ? 'badge-success' : 'badge-warning'}`}>
+                                    <span className={`badge ${request.status === 'delivered' ? 'badge-success bg-green-900 text-white' : 'badge-warning'}`}>
                                         {request.status}
                                     </span>
                                 </td>
@@ -111,7 +111,7 @@ const ServeMeals = () => {
       key={num}
       onClick={() => setPage(num + 1)}
       className={`px-4 py-2 rounded ${
-        page === num + 1 ? 'bg-[#0c6c7c] text-white' : 'bg-gray-300'
+        page === num + 1 ? 'bg-[#0c6c7c] text-white' : 'bg-cyan-900 text-gray-200'
       }`}
     >
       {num + 1}

@@ -86,8 +86,8 @@ const UpcomingMeal = () => {
 
 
     return (
-        <div className='p-6 max-w-6xl mx-auto min-h-screen bg-sky-50'>
-            <h2 className='text-2xl text-gray-600 font-bold text-center mb-7'>Upcoming Meals</h2>
+        <div className='p-6  mx-auto min-h-screen bg-base-100 '>
+            <h2 className='text-2xl text-[#ec644b] font-bold text-center mb-7'>Upcoming Meals</h2>
 
 
             <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5'>
@@ -98,14 +98,14 @@ const UpcomingMeal = () => {
 
                         <img src={meal.image} alt={meal.title} className='w-full h-40 object-cover rounded-md mb-4' />
 
-                        <h3 className='text-lg font-bold mb-1'>{meal.title}</h3>
-                        <p className='text-sm mb-1'>{meal.description?.slice(0,60)}...</p>
-                        <p className='text-sm text-gray-600 mb-2'>Likes: {meal.likes || 0}</p>
+                        <h3 className='text-lg font-bold text-gray-600 mb-1'>{meal.title}</h3>
+                        <p className='text-sm text-gray-600 mb-1'>{meal.description?.slice(0,60)}...</p>
+                        <p className='text-sm  text-gray-600 mb-2'>Likes: {meal.likes || 0}</p>
 
                           <button
                             onClick={() => handleLike(meal)}
                             disabled={!['silver', 'gold', 'platinum'].includes(userBadge)}
-                            className='btn bg-[#0c6c7c] hover:bg-blue-600 text-white mt-auto disabled:opacity-50 disabled:cursor-not-allowed'>
+                            className='btn bg-[#0c6c7c] hover:bg-cyan-900 text-white mt-auto disabled:opacity-50 disabled:cursor-not-allowed'>
                             Like
                         </button>
 

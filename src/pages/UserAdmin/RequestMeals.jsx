@@ -34,7 +34,7 @@ const RequestMeals = () => {
     };
 
     return (
-        <div className='p-7 bg-amber-100'>
+        <div className='p-7 bg-base-100'>
             <h2 className='text-2xl text-gray-600 text-center font-bold mb-5'>Requested Meals</h2>
             <div className='overflow-x-auto bg-base-100'>
                 <table className='table w-full'>
@@ -59,7 +59,7 @@ const RequestMeals = () => {
                                 <td>
                                     <button 
                                     onClick={()=> handleCancel(req._id)}
-                                    className='bg-red-500 px-4 py-2 rounded text-white hover:bg-red-600'>
+                                    className='bg-[#ec644b] px-4 py-2 rounded text-white hover:bg-amber-700'>
                                         cancel
                                     </button>
                                 </td>
@@ -83,7 +83,7 @@ const RequestMeals = () => {
     <button
       key={i}
       onClick={() => setCurrentPage(i + 1)}
-      className={`px-3 py-1 rounded ${currentPage === i + 1 ? 'bg-amber-700 text-white' : 'bg-base-100 text-gray-700'}`}
+      className={`px-3 py-1 rounded ${currentPage === i + 1 ? 'bg-cyan-900 text-white' : 'bg-base-100 text-gray-700'}`}
     >
       {i + 1}
     </button>

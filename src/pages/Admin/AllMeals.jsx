@@ -78,7 +78,7 @@ const AllMeals = () => {
 
 
     return (
-        <div className='p-5 md:p-7 bg-amber-500'>
+        <div className='p-5 md:p-7 bg-base-100'>
             <h2 className='text-2xl font-bold mb-5 text-center md:text-left'>All Meals</h2>
 
             <div className='flex flex-col sm:flex-row gap-4  mb-4'>
@@ -99,7 +99,7 @@ const AllMeals = () => {
 
 
 
-          <thead className="bg-gray-100">
+          <thead className="bg-base-100 text-gray-600">
             <tr>
               <th className='p-2 text-left'>Title</th>
               <th className='p-2 text-left'>Price</th>
@@ -149,7 +149,7 @@ const AllMeals = () => {
                 <td className='p-2 break-words max-w-[120px]'>{meal.distributorName}</td>
                 <td className='p-2 space-x-1 flex flex-wrap gap-2'>
                     <button
-                    className='btn btn-sm btn-info'
+                    className='btn btn-sm bg-[#ec644b] text-gray-200 '
                     onClick={()=> navigate(`/meal/${meal._id}`)}>
                         View
                     </button>
@@ -160,13 +160,13 @@ const AllMeals = () => {
                             Save
                         </button>
                     ):(
-                        <button className='btn btn-sm btn-warning'
+                        <button className='btn btn-sm text-gray-200 bg-green-700 '
                         onClick={()=> handleEdit(meal)}>
                            Edit
                         </button>
                     )}
 
-                    <button className='btn btn-sm btn-error'
+                    <button className='btn btn-sm bg-[#0c6c7c]  text-gray-200'
                     onClick={()=> handleDelete(meal._id)}>
                         Delete
                     </button>
@@ -191,7 +191,7 @@ const AllMeals = () => {
         <button
           onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
           disabled={currentPage === 1}
-          className='btn text-white bg-amber-950 btn-outline'
+          className='btn text-gray-400 bg-base-100 '
         >
           Prev
         </button>
@@ -200,7 +200,7 @@ const AllMeals = () => {
           <button
             key={num}
             onClick={() => setCurrentPage(num + 1)}
-            className={`btn btn-sm ${currentPage === num + 1 ? 'bg-amber-950 text-white' : 'btn-outline'}`}
+            className={`btn btn-sm ${currentPage === num + 1 ? 'bg-cyan-900 text-white' : 'bg-[#0c6c7c] btn-outline'}`}
           >
             {num + 1}
           </button>
@@ -209,7 +209,7 @@ const AllMeals = () => {
         <button
           onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
           disabled={currentPage === totalPages}
-          className='btn bg-amber-950 text-white btn-outline'
+          className='btn bg-base-100 text-gray-400 btn-outline'
         >
           Next
         </button>

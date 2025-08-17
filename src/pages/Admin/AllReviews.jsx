@@ -47,7 +47,7 @@ const AllReviews = () => {
     if(isLoading) return <p className='text-center py-10'>Loading...</p>
 
     return (
-        <div className='p-4 bg-amber-500 '>
+        <div className='p-4 bg-gray-100 '>
             <h2 className='text-xl text-center text-gray-600 font-bold mb-4'>All Reviews</h2>
 
             <div className='overflow-x-auto bg-base-100'>
@@ -108,7 +108,7 @@ const AllReviews = () => {
             key={page}
             onClick={() => setCurrentPage(page + 1)}
             className={`px-3 py-1 border rounded ${
-              currentPage === page + 1 ? 'bg-amber-950 text-white' : 'bg-white text-black'
+              currentPage === page + 1 ? 'bg-cyan-950 text-white' : 'bg-white text-black'
             }`}
           >
             {page + 1}

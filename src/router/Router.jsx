@@ -57,7 +57,15 @@ export const router = createBrowserRouter([
       {
         path:"offer",
         element:<Offer></Offer>
-      }
+      },
+       {
+        path: "login",
+        element: <Login />
+      },
+      {
+        path: "register",
+        element: <Register />
+      },
     ],
     
   },
@@ -77,14 +85,7 @@ path: "/checkout/:packageName/:price",
     path: "/join-us",
     element: <JoinUs />,
     // children: [
-    //   {
-    //     path: "login",
-    //     element: <Login />
-    //   },
-    //   {
-    //     path: "register",
-    //     element: <Register />
-    //   },
+     
     // ],
   },
 

@@ -51,8 +51,8 @@ const MyReviews = () => {
 
 
     return (
-          <div className='p-4 md:p-7 bg-amber-50'>
-            <h2 className='text-xl  md:text-2xl font-bold mb-5 text-center text-gray-600 md:text-left'>My Reviews</h2>
+          <div className='p-4 md:p-7 bg-base-100'>
+            <h2 className='text-xl  md:text-2xl font-bold mb-5 text-center text-gray-600 '>My Reviews</h2>
             <div className='overflow-x-auto bg-base-100'>
                 <table className='table w-full text-sm md:text-base'>
                     <thead className='bg-base-100'>
