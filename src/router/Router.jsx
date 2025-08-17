@@ -29,6 +29,8 @@ import PrivateRoute from "../routes/PrivateRoute";
 import CheckOut from "../pages/CheckOut/CheckOut";
 import MealDetails from "../pages/Home/MealsByCategory/MealDetails";
 import StripeProvider from "../context/StripeProvider";
+import UserOverview from "../pages/UserAdmin/UserOverview";
+import AdminOverview from "../pages/Admin/AdminOverview";
 
 
 
@@ -114,6 +116,10 @@ path: "/checkout/:packageName/:price",
         path: "payment-history",
         element: <PaymentHistory />,
       },
+      {
+        path: "user-overview",
+        element: <UserOverview/>,
+      },
     ],
   },
 
@@ -154,6 +160,11 @@ path: "/checkout/:packageName/:price",
         path: "upcoming-meals",
         element: <UpcomingMeals />
       },
+      {
+        path: "admin-overview",
+        element: <AdminOverview/>
+      },
+      
     ],
   },
 ]);

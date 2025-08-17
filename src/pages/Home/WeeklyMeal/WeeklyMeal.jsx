@@ -15,25 +15,31 @@ const WeeklyMeal = () => {
   const categories = ["Breakfast","Lunch","Dinner"];
 
   return (
-    <section className="py-16 bg-base-100">
-      <div className=" mx-auto px-4">
-        <h2 className="text-3xl font-bold mb-8 text-[#ec644b] text-center">Weekly Meal Plan</h2>
+    <section className="py-10 md:py-16 bg-base-100">
+      <div className="mx-auto px-3 sm:px-6 lg:px-10 ">
+        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6 md:mb-8 text-[#ec644b] text-center">
+          Weekly Meal Plan
+        </h2>
+
         <div className="overflow-x-auto">
-          <table className="min-w-full bg-white rounded-lg shadow-md">
+          <table className="min-w-full bg-white rounded-lg shadow-md text-sm sm:text-base">
             <thead>
               <tr className="bg-gray-100">
-                <th className="py-3 px-6 text-gray-600">Day</th>
+                <th className="py-2 sm:py-3 px-3 sm:px-6 text-gray-600 text-left">Day</th>
                 {categories.map(cat => (
-                  <th key={cat} className="py-3 px-6 text-gray-600">{cat}</th>
+                  <th key={cat} className="py-2 sm:py-3 px-3 sm:px-6 text-gray-600 text-left">{cat}</th>
                 ))}
               </tr>
             </thead>
             <tbody>
               {weeklyMeals.map(row => (
-                <tr key={row.day} className="text-center text-gray-600 border-b border-r border-l border-amber-500">
-                  <td className="py-2 px-4 font-semibold">{row.day}</td>
+                <tr 
+                  key={row.day} 
+                  className="text-gray-600 border-b border-amber-200 hover:bg-amber-50 transition"
+                >
+                  <td className="py-2 px-3 sm:py-3 sm:px-6 font-semibold">{row.day}</td>
                   {categories.map(cat => (
-                    <td key={cat} className="py-2 px-4 text-gray-600">{row[cat]}</td>
+                    <td key={cat} className="py-2 px-3 sm:py-3 sm:px-6">{row[cat]}</td>
                   ))}
                 </tr>
               ))}

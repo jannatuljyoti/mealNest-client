@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
@@ -8,11 +7,9 @@ const ManageUsers = () => {
   const axiosSecure = useAxiosSecure();
   const [searchTerm, setSearchTerm] = useState('');
   const [debouncedTerm, setDebouncedTerm] = useState('');
-   const [currentPage, setCurrentPage] = useState(1);
-    const limit = 10;
+  const [currentPage, setCurrentPage] = useState(1);
+  const limit = 10;
 
-
-  // debounce search input
   useEffect(() => {
     const timeout = setTimeout(() => {
       setDebouncedTerm(searchTerm);
@@ -22,7 +19,7 @@ const ManageUsers = () => {
   }, [searchTerm]);
 
   const { data = {}, refetch, isLoading } = useQuery({
-    queryKey: ['all-users', debouncedTerm,currentPage],
+    queryKey: ['all-users', debouncedTerm, currentPage],
     queryFn: async () => {
       const res = await axiosSecure.get(
         `/api/users?search=${debouncedTerm}&page=${currentPage}&limit=${limit}`
@@ -58,29 +55,27 @@ const ManageUsers = () => {
     }
   };
 
-  
-
   if (isLoading) return <p className="text-center py-10">Loading...</p>;
 
   return (
-    <div className="p-4 bg-base-100 max-h-screen">
-      <h2 className="text-2xl  font-bold mb-4">Manage Users</h2>
+    <div className="p-4 bg-base-100 min-h-screen">
+      <h2 className="text-xl md:text-2xl text-center font-bold mb-4">Manage Users</h2>
 
       {/* Search Input */}
-      <input
-        type="text"
-        placeholder="Search by name or email"
-        className="input input-bordered w-full max-w-xs mb-4"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
+      <div className="flex justify-center mb-4">
+        <input
+          type="text"
+          placeholder="Search by name or email"
+          className="input input-bordered w-full max-w-md"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+      </div>
 
+      {/* Responsive Table */}
       <div className="overflow-x-auto">
-    <table className="table bg-gray-50 text-gray-800 w-full">
-
-
-
-          <thead className="">
+        <table className="table bg-gray-50 text-gray-800 w-full text-sm md:text-base">
+          <thead>
             <tr>
               <th>#</th>
               <th>User Name</th>
@@ -93,9 +88,9 @@ const ManageUsers = () => {
           <tbody>
             {users.map((user, idx) => (
               <tr key={user._id}>
-                <td>{idx + 1}</td>
+                <td>{(currentPage - 1) * limit + idx + 1}</td>
                 <td>{user.name || 'N/A'}</td>
-                <td>{user.email}</td>
+                <td className="break-words">{user.email}</td>
                 <td className="capitalize">{user.badge || 'bronze'}</td>
                 <td>{user.role || 'user'}</td>
                 <td>
@@ -123,9 +118,8 @@ const ManageUsers = () => {
         </table>
       </div>
 
-
-    {/* Pagination Footer */}
-      <div className="flex justify-center mt-6 gap-2">
+      {/* Pagination */}
+      <div className="flex flex-wrap justify-center mt-6 gap-2">
         {[...Array(totalPages).keys()].map((page) => (
           <button
             key={page}

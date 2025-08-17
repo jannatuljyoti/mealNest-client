@@ -52,7 +52,7 @@ const MyReviews = () => {
 
     return (
           <div className='p-4 md:p-7 bg-base-100'>
-            <h2 className='text-xl  md:text-2xl font-bold mb-5 text-center text-gray-600 '>My Reviews</h2>
+            <h2 className='text-xl  md:text-2xl font-bold mb-5 text-center  '>My Reviews</h2>
             <div className='overflow-x-auto bg-base-100'>
                 <table className='table w-full text-sm md:text-base'>
                     <thead className='bg-base-100'>
@@ -103,7 +103,7 @@ const MyReviews = () => {
                                             <button onClick={()=>{
                                             setEditingId(r._id);
                                             setNewReview(r.review);
-                                        }} className='btn text-white btn-sm btn-warning'>
+                                        }} className='btn bg-green-700 text-white btn-sm '>
                                             Edit
                                         </button>
 
@@ -141,7 +141,7 @@ const MyReviews = () => {
       <button
         key={i}
         onClick={() => setPage(i + 1)}
-        className={`join-item btn btn-sm ${page === i + 1 ? 'bg-amber-950 text-white' : 'btn-outline'}`}
+        className={`join-item btn btn-sm ${page === i + 1 ? 'bg-cyan-900 text-white' : 'btn-outline'}`}
       >
         {i + 1}
       </button>

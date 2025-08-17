@@ -35,7 +35,7 @@ const RequestMeals = () => {
 
     return (
         <div className='p-7 bg-base-100'>
-            <h2 className='text-2xl text-gray-600 text-center font-bold mb-5'>Requested Meals</h2>
+            <h2 className='text-2xl  text-center font-bold mb-5'>Requested Meals</h2>
             <div className='overflow-x-auto bg-base-100'>
                 <table className='table w-full'>
                     <thead className='bg-base-100'>

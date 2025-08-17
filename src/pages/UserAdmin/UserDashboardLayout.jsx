@@ -82,6 +82,21 @@ const UserDashboardLayout = () => {
                 Payment History
               </NavLink>
             </li>
+
+            <li>
+  <NavLink
+    to="/user-dashboard/user-overview"
+    className={({ isActive }) =>
+      isActive
+        ? "flex items-center gap-2 text-orange-400 font-semibold"
+        : "flex items-center gap-2 text-white hover:text-orange-300"
+    }
+  >
+    <IoGridOutline size={20} />
+    Overview
+  </NavLink>
+</li>
+
           </ul>
         </nav>
       </aside>

@@ -30,7 +30,7 @@ const meals =data?.meals || [];
             >Meals by Category</h2>
 
             {/* tabs */}
-<div className="tabs tabs-boxed justify-center mb-7 bg-base-200 text-base-content">
+<div className="tabs tabs-boxed justify-center mb-7 bg-base-100 ">
                 {categories.map((cats)=>(
                     <button 
                     key={cats}

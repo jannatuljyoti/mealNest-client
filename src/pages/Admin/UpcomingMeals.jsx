@@ -80,7 +80,7 @@ const UpcomingMeals = () => {
   }
 
     return (
-        <div className='p-7'>
+        <div className='p-7 bg-base-100'>
 
             
             <ToastContainer 
@@ -96,7 +96,7 @@ const UpcomingMeals = () => {
             />
            
             <div className='flex justify-between items-center mb-5'>
-                <h2 className='text-2xl font-bold text-gray-600'>Upcoming Meals</h2>
+                <h2 className='text-2xl font-bold '>Upcoming Meals</h2>
 
                 <button
                 onClick={()=> setIsModalOpen(true)}
@@ -109,7 +109,7 @@ const UpcomingMeals = () => {
         {/* Table */}
         <div className='overflow-x-auto'>
             <table className='table w-full'>
-                <thead className='text-gray-600'>
+                <thead className=''>
                     <tr>
                         <th>Title</th>
                         <th>Likes</th>
@@ -122,9 +122,9 @@ const UpcomingMeals = () => {
                 <tbody>
                     {meals.map((meal)=>(
                         <tr key={meal._id}>
-                            <td className='text-gray-600'>{meal.title}</td>
-                            <td className='text-gray-600'>{meal.likes}</td>
-                            <td className='text-gray-600'>{new Date(meal.postTime).toLocaleString()}</td>
+                            <td >{meal.title}</td>
+                            <td >{meal.likes}</td>
+                            <td >{new Date(meal.postTime).toLocaleString()}</td>
                             <td>
                                <button
   onClick={() => handlePublish(meal)}

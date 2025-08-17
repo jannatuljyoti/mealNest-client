@@ -26,8 +26,8 @@ const PaymentHistory = () => {
 
 
     return (
-        <div className='p-6'>
-            <h2 className='text2xl font-bold mb-4'>My Payment History</h2>
+        <div className='p-6 bg-base-100'>
+            <h2 className='text-2xl text-center  font-bold mb-4'>My Payment History</h2>
             
             <div className='overflow-x-auto'>
                 <table className='table table-zebra w-full'>

@@ -72,18 +72,18 @@ const price = parseFloat(priceParam); // no need for useState
     return (
         <section>
             <MealNestLogo></MealNestLogo>
-            <div className='p-7 max-w-md mx-auto bg-white rounded shadow'>
+            <div className='p-7 max-w-md mx-auto bg-base-100 rounded shadow'>
             
             <h2 className='text-xl font-bold mb-5'><strong>Package:</strong> {packageName}</h2>
             <h3 className='mb-5'><strong>Price:</strong> ${price}</h3>
             
 
             <form onSubmit={handleSubmit}>
-                <CardElement className='p-4 border rounded text-black'/>
+                <CardElement className='p-4 border rounded '/>
                 <button
                 type='submit'
                 disabled={!stripe || !clientSecret || processing}
-                className='btn btn-primary mt-5 w-full'>
+                className='btn bg-[#ec644b] text-white mt-5 w-full'>
                     {processing? 'Processing...' : 'Pay Now'}
                 </button>
 
