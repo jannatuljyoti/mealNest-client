@@ -77,18 +77,18 @@ const MealDetails = () => {
 
 
     return (
-       <section className='bg-sky-50'>
+       <section className='bg-base-100'>
         <Navbar></Navbar>
 
-         <div className='max-w-4xl mx-auto my-10 p-5 rounded-md bg-white shadow-md'>
+         <div className='max-w-4xl mx-auto my-10 p-5 rounded-md bg-base-100 shadow-md'>
 
             <div className='items-center justify-center'>
-             <h2 className='text-3xl font-bold text-gray-600 p-4'>Meal Details</h2>
+             <h2 className='text-3xl font-bold text-[#ec644b] p-4 text-center'>Meal Details</h2>
             </div>
 
             <img src={meal.image} alt={meal.title} className='w-full h-full object-cover rounded' />
             <h2 className='text-3xl font-bold mt-4 text-[#ec644b]'>{meal.title}</h2>
-            <p className='text-gray-600 mt-2'>{meal.description}</p>
+            <p className=' mt-2'>{meal.description}</p>
 
             <p className='mt-2'><strong>Distributor:</strong> {meal.distributorName} </p>
 
